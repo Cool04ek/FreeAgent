@@ -1,3 +1,42 @@
-<dir-header></dir-header>
-<dir-registration></dir-registration>
-<dir-footer></dir-footer>
+<div id="registration">
+    <dir-header></dir-header>
+
+    <div class="form-wrapper">
+        <form id="reg-form" ng-submit="sumbitForm()">
+            <h1 class="page-header">REGISTRATION</h1>
+
+            <div class="socials">
+                <span>LOGIN WITH</span>
+
+                <span>|</span>
+
+                <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:8080/api/ggregistration&amp;response_type=code&amp;client_id=984084695751-v075768i8b3torl2t0evijuj63t4sfrc.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile">
+                    <img src="/img/icons/google_dark.svg">
+                </a>
+
+                <a href="http://oauth.vk.com/authorize?client_id=5191126&redirect_uri=http://localhost:8080/api/vkregistration&response_type=code&scope=email">
+                    <img src="/img/icons/vk_dark.svg">
+                </a>
+
+                <a href="https://www.facebook.com/dialog/oauth?client_id=1496696780635384&redirect_uri=http://localhost:8080/api/fbregistration&response_type=code&scope=email">
+                    <img src="/img/icons/facebook_dark.svg">
+                </a>
+            </div>
+
+            <p class="subtitle">
+                Введите, пожалуйста, данные необходимые для регистрации.
+            </p>
+
+            <dir-form-field field-config="fields.name"></dir-form-field>
+            <dir-form-field field-config="fields.email"></dir-form-field>
+
+            <div class="row-wrapper">
+                <dir-form-field field-config="fields.password"></dir-form-field>
+                <dir-form-field field-config="fields.confirmPassword"></dir-form-field>
+            </div>
+
+            <button class="btn primary">SUBMIT</button>
+        </form>
+    </div>
+
+</div>

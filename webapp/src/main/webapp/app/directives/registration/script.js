@@ -27,12 +27,12 @@ define([
 
             $scope.uiTranslations = uiTranslations[$scope.language].registration;
 
-            $scope.formData = {};
+            $scope.form = {};
 
             $scope.error = '';
 
-            $scope.registrationHandler = function() {
-                var data = $scope.$root.toolkit.serialize($scope.formData);
+            $scope.sumbitForm = function() {
+                var data = $scope.$root.toolkit.serialize($scope.form);
                 $scope.error = '';
 
                 registration(data)
@@ -47,17 +47,17 @@ define([
                             return;
                         }
 
-                        $scope.loginAfterReg();
+                        $scope.login();
                     })
                     .error(function(err) {
                         $scope.error = 'Request failed';
                     })
             };
 
-            $scope.loginAfterReg = function() {
+            $scope.login = function() {
                 var data = $scope.$root.toolkit.serialize({
-                    'j_username': $scope.formData.email,
-                    'j_password': $scope.formData.password,
+                    'username': $scope.form.email,
+                    'password': $scope.form.password,
                     'submit': 'Login'
                 });
 

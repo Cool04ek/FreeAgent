@@ -1,3 +1,45 @@
-<dir-header></dir-header>
-<dir-login></dir-login>
-<dir-footer></dir-footer>
+<div id="login">
+    <dir-header></dir-header>
+
+    <div class="form-wrapper">
+        <form id="login-form" ng-submit="loginHandler()">
+            <h1 class="page-header">LOGIN</h1>
+
+            <div class="socials">
+                <span>LOGIN WITH</span>
+
+                <span>|</span>
+
+                <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=http://localhost:8080/api/gglogin&amp;response_type=code&amp;client_id=984084695751-v075768i8b3torl2t0evijuj63t4sfrc.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.login+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fplus.me+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile">
+                    <img src="/img/icons/google_dark.svg">
+                </a>
+
+                <a href="http://oauth.vk.com/authorize?client_id=5191126&redirect_uri=http://localhost:8080/api/vklogin&response_type=code&scope=email">
+                    <img src="/img/icons/vk_dark.svg">
+                </a>
+
+                <a href="https://www.facebook.com/dialog/oauth?client_id=1496696780635384&redirect_uri=http://localhost:8080/api/fblogin&response_type=code&scope=email">
+                    <img src="/img/icons/facebook_dark.svg">
+                </a>
+            </div>
+
+            <p class="subtitle">
+                Введите, пожалуйста, данные необходимые для входа.
+            </p>
+
+            <dir-form-field field-config="fields.email"></dir-form-field>
+            <dir-form-field field-config="fields.password"></dir-form-field>
+
+            <div class="error">{{error}}</div>
+
+            <button class="btn primary">{{uiTranslations.button_login}}</button>
+
+            <div class="row-wrapper login-links">
+
+                <a class="link_forgot" href="/reset-password">{{uiTranslations.link_forgot}}</a>
+                <a class="link_registration" href="/registration">{{uiTranslations.link_registration}}</a>
+
+            </div>
+        </form>
+    </div>
+</div>

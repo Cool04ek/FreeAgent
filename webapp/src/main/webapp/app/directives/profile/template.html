@@ -4,7 +4,11 @@
         <div>
             <img class="userpic" ng-src="{{ userPicUrl }}">
 
-            <a href="/message/read">Show my messages</a>
+            <a href="/dialogs">Show my messages</a>
+            <br>
+            <br>
+
+            <!--<dir-datepicker config="datePickerData"></dir-datepicker>-->
             <br>
             <br>
 
@@ -16,7 +20,8 @@
                 <tbody>
                 <tr ng-repeat="(key, value) in userInfo">
                     <td>{{ key }}</td>
-                    <td>{{ value }}</td>
+                    <td ng-hide="key !== 'dateOfRegistration' && key !== 'dateOfBirth'">{{ value | date }}</td>
+                    <td ng-show="key !== 'dateOfRegistration' && key !== 'dateOfBirth'">{{ value }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -25,7 +30,7 @@
             <h1>Uppload new profile image</h1>
             <div>
                 <form id="userpic" ng-submit="uploadImage()">
-                    <input type="file" name="file">
+                    <input type="file" name="file" ng-model="imageInput">
                     <br>
                     <input type="submit">
                 </form>

@@ -1,12 +1,13 @@
 package com.free.agent.service;
 
-import com.free.agent.dao.dto.Participant;
+import com.free.agent.dto.MessageDto;
+import com.free.agent.dto.MessageUIDto;
+import com.free.agent.exception.EmailAlreadyUsedException;
 import com.free.agent.model.Message;
-import com.free.agent.service.dto.MessageDto;
-import com.free.agent.service.dto.MessageUIDto;
 
 import java.security.Principal;
-import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by antonPC on 29.07.15.
@@ -15,19 +16,19 @@ public interface MessageService {
 
     void removeOldMessages();
 
-    Collection<MessageUIDto> findAllByReceiver(String email);
+    List<MessageUIDto> findAllByReceiver(String email);
 
-    Collection<Message> findAllByAuthor(String email);
+    Set<Message> findAllByAuthor(String email);
 
-    Collection<Message> findAllByReceiverAndAuthor(Long id, String email, Principal principal);
+    Set<Message> findAllByReceiverAndAuthor(Long id, Principal principal);
 
-    void save(MessageDto messageDto, String email, Principal principal) throws IllegalAccessException;
+    void save(MessageDto messageDto, String email, Principal principal) throws EmailAlreadyUsedException;
 
     void updateMessageStatus(Long id, String email);
 
     int countUnreadMessages(String email);
 
-    Collection<MessageUIDto> getHistory(Long id, String email);
+    List<MessageUIDto> getHistory(Long id, String email);
 
-    Collection<Participant> getParticipants(String email);
+    Set<Long> getParticipants(String email);
 }

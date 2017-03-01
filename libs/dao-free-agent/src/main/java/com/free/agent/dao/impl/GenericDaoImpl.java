@@ -8,6 +8,8 @@ import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public abstract class GenericDaoImpl<T, PK extends Serializable> implements GenericDao<T, PK> {
 
@@ -40,14 +42,14 @@ public abstract class GenericDaoImpl<T, PK extends Serializable> implements Gene
     }
 
     public void deleteAll() {
-        for (T t : findAll()){
-            delete(t);
-        }
+        findAll().forEach(this::delete);
     }
 
     public void delete(Collection<T> entries) {
-        for (T t : entries) {
-            delete(t);
-        }
+        entries.forEach(this::delete);
+    }
+
+    public Set<T> saveAll(Collection<T> entries) {
+        return entries.stream().map(this::create).collect(Collectors.toSet());
     }
 }

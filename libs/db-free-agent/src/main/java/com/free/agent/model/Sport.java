@@ -1,14 +1,22 @@
 package com.free.agent.model;
 
+import com.google.common.collect.Sets;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Created by antonPC on 15.06.15.
  */
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
-@Table(name = "SPORT", uniqueConstraints = {@UniqueConstraint(columnNames = {"NAME"})})
+@Table(name = "SPORT", uniqueConstraints = {@UniqueConstraint(columnNames = {"NAME_EN", "NAME_RU"})})
 public class Sport extends AbstractTable<Long> {
 
     @Id
@@ -16,47 +24,13 @@ public class Sport extends AbstractTable<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME", unique = true)
-    private String name;
+    @Column(name = "NAME_EN", unique = true)
+    private String nameEn;
 
-    @Column(name = "IMAGE")
-    private String image;
+    @Column(name = "NAME_RU", unique = true)
+    private String nameRu;
 
     @ManyToMany(mappedBy = "sports", fetch = FetchType.LAZY)
-    private Set<User> users = new HashSet<User>();
+    private Set<User> users = Sets.newHashSet();
 
-    public Sport(String name) {
-        this.name = name;
-    }
-
-    public Sport() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }
